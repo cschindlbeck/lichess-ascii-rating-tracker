@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  lichess:
+    build:
+      context: ..
+      dockerfile: .docker/Dockerfile
+    image: lichess-docker:v0.1.0
+    environment:
+      - API_TOKEN=$API_TOKEN
+      - RATING_TYPE=Puzzles
+    volumes:
+      - ..:/home/lichess

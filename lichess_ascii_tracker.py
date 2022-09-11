@@ -6,16 +6,16 @@ API_TOKEN = "lip_oWEJVloOyWGv5eY16PTw"
 #rating_type = 'Bullet'
 rating_type = 'Puzzles'
 
-def ascii():
+def get_ratings_from_lichess() -> list:
+    """
+    Returns list of ratings from lichess using berserk
+
+    :return: list of ratings from lichess
+    :rtype: list
+    """
     session = berserk.TokenSession(API_TOKEN)
     client = berserk.Client(session=session)
-
     user_id = client.account.get()['id']
-
-    # puz = client.users.get_puzzle_activity(max=1)
-    # for ley in puz:
-    #     print(ley)
-
     rating_history = client.users.get_rating_history(user_id)
 
     for rating in rating_history:
@@ -30,12 +30,20 @@ def ascii():
     for i in range(0,len(rating_points)):
         ratings.append(rating_points[i][3])
 
+def print_ascii_tracker(ratings: list) -> None:
+    """
+    Prints ASCII tracker given a list of ratings using asciichartpy
+
+    :param ratings: List of ratings to be printed
+    :type ratings: list
+    """
     config = {'height': 9, 'format': '{:8.0f}'}
     print(asciichartpy.plot(ratings, config))
 
 
 def main():
-    ascii()
+    list_of_ratings = get_ratings_from_lichess()
+    print_ascii_tracker(list_of_ratings)
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,34 @@
+name: Build README
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  API_TOKEN: $API_TOKEN
+  RATING_TYPE: Puzzles
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build README
+      run: |
+        cat doc/README_0.md > README.md
+        pip install -r requirements.txt
+        python3 lichess_ascii_tracker.py >> README.md
+        cat doc/README_1.md >> README.md
+        cat doc/README_2.md >> README.md
+    - name: Push code
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        # Force add since README is on gitignore
+        git add -f README.md
+        # Prevent empty add to result in error
+        git diff-index --quiet HEAD || git commit -m "Updated README"
+        git push

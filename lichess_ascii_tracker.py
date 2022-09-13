@@ -1,4 +1,10 @@
 #!/usr/local/bin/python3
+"""
+Lichess ASCII rating tracker
+
+Author: Chris Schindlbeck
+License: TODO
+"""
 
 import os
 import berserk

@@ -18,17 +18,15 @@ def get_ratings_from_lichess() -> list:
     user_id = client.account.get()['id']
     rating_history = client.users.get_rating_history(user_id)
 
-    for rating in rating_history:
-        if rating['name'] == rating_type:
-            print(rating['name'])
-            puzzle_rating = rating
-            break
-
-    rating_points = puzzle_rating['points']
+    puzzle_names = [d['name'] for d in rating_history if 'name' in d]
+    puzzle_type = 'Bullet'
+    puzzle_rating_points = [d['points'] for d in rating_history if d['name'] == puzzle_type][0]
 
     ratings = []
-    for i in range(0,len(rating_points)):
-        ratings.append(rating_points[i][3])
+    for i in range(0,len(puzzle_rating_points)):
+        ratings.append(puzzle_rating_points[i][3])
+    
+    return ratings
 
 def print_ascii_tracker(ratings: list) -> None:
     """

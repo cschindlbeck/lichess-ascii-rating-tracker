@@ -6,8 +6,11 @@ Follow me on [![Lichess Badge](https://img.shields.io/static/v1?style=flat&messa
 
 ## Installation
 
-
 Install the python dependencies via requirements.txt
+
+```bash
+export API_TOKEN=lip_oWEJVloOyWGv5eY16PTw
+```
 
 ## Docker
 

@@ -9,8 +9,19 @@ Follow me on [![Lichess Badge](https://img.shields.io/static/v1?style=flat&messa
 Install the python dependencies via requirements.txt
 
 ```bash
-export API_TOKEN=lip_oWEJVloOyWGv5eY16PTw
+export API_TOKEN=your_lichess_api_token
 ```
+
+```bash
+export PUZZLE_TYPE=Bullet
+```
+
+## Usage
+
+```bash
+python3 lichess_ascii_rating_tracker.py
+```
+
 
 ## Docker
 
@@ -28,8 +39,8 @@ Output can be piped to a file
 
 christopsy666
 Puzzles
-    1978 ┤
-    1935 ┤        ╭╮                  ╭╮  ╭─╮
+    1978 ┤  
+    1935 ┤        ╭╮                  ╭╮  ╭─╮  
     1892 ┤        │╰─╮╭──╮  ╭╮  ╭╮╭╮ ╭╯│ ╭╯ ╰╮
     1849 ┤        │  ╰╯  ╰╮╭╯│╭─╯╰╯╰─╯ ╰─╯   │ ╭─╮    ╭
     1806 ┤        │       ╰╯ ╰╯              │ │ ╰──╮ │

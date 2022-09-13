@@ -15,13 +15,15 @@ def get_ratings_from_lichess() -> list:
     session = berserk.TokenSession(API_TOKEN)
     client = berserk.Client(session=session)
     user_id = client.account.get()['id']
+    print(f"{user_id}")
     rating_history = client.users.get_rating_history(user_id)
 
-    puzzle_types = [d['name'] for d in rating_history if 'name' in d]
-
+    # Get puzzle type and check for availability
     puzzle_type = RATING_TYPE
+    puzzle_types = [d['name'] for d in rating_history if 'name' in d]
     if puzzle_type not in puzzle_types:
         raise Exception(f"Puzzle type is not valid, you chose {puzzle_type}! Please use one of these: {puzzle_types}")
+    print(f"{puzzle_type}")
 
     puzzle_rating_points = [d['points'] for d in rating_history if d['name'] == puzzle_type][0]
     ratings = [row[3] for row in puzzle_rating_points]
@@ -37,10 +39,10 @@ def print_ascii_tracker(ratings: list) -> None:
     config = {'height': 9, 'format': '{:8.0f}'}
     print(asciichartpy.plot(ratings, config))
 
-
 def main():
     list_of_ratings = get_ratings_from_lichess()
     print_ascii_tracker(list_of_ratings)
+
 
 if __name__ == "__main__":
     main()

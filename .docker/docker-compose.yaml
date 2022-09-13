@@ -4,5 +4,6 @@ services:
     build:
       context: ..
       dockerfile: .docker/Dockerfile
+    image: lichess-docker:v0.1.0
     volumes:
       - ..:/home/lichess

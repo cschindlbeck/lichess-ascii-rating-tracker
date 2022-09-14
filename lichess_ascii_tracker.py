@@ -18,7 +18,7 @@ def get_ratings_from_lichess(api_token: str = None, rating_type: str = None) -> 
     :return: list of ratings from lichess
     :rtype: list
     """
-    if api_token is None
+    if api_token is None:
         raise Exception("api_token must be passed")
     if rating_type is None:
         raise Exception("rating_type must be passed")

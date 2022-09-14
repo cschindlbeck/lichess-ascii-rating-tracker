@@ -3,7 +3,7 @@
 Lichess ASCII rating tracker
 
 Author: Chris Schindlbeck
-License: TODO
+License: MIT
 """
 
 import os

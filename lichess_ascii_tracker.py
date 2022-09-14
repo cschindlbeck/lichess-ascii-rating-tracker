@@ -7,8 +7,8 @@ License: MIT
 """
 
 import os
-import berserk
-import asciichartpy
+import berserk  # pylint import-error
+import asciichartpy  # pylint import-error
 
 
 def get_ratings_from_lichess(api_token: str = None, rating_type: str = None) -> list:
@@ -80,6 +80,9 @@ def get_rating_type_from_env():
     return rating_type
 
 def main():
+    """
+    Main function
+    """
     api_token=get_token_from_env()
     rating_type=get_rating_type_from_env()
     list_of_ratings = get_ratings_from_lichess(api_token, rating_type)

@@ -11,29 +11,30 @@ import berserk
 import asciichartpy
 
 
-def get_ratings_from_lichess(API_TOKEN: str = None, RATING_TYPE: str = None) -> list:
+def get_ratings_from_lichess(api_token: str = None, rating_type: str = None) -> list:
     """
     Returns list of ratings from lichess using berserk
 
     :return: list of ratings from lichess
     :rtype: list
     """
-    if API_TOKEN is None: 
-        raise Exception("API_TOKEN must be passed")
-    if RATING_TYPE is None: 
-        raise Exception("RATING_TYPE must be passed")
+    if api_token is None
+        raise Exception("api_token must be passed")
+    if rating_type is None:
+        raise Exception("rating_type must be passed")
 
-    session = berserk.TokenSession(API_TOKEN)
+    session = berserk.TokenSession(api_token)
     client = berserk.Client(session=session)
     user_id = client.account.get()['id']
     print(f"{user_id}")
     rating_history = client.users.get_rating_history(user_id)
 
     # Get puzzle type and check for availability
-    puzzle_type = RATING_TYPE
+    puzzle_type = rating_type
     puzzle_types = [d['name'] for d in rating_history if 'name' in d]
     if puzzle_type not in puzzle_types:
-        raise Exception(f"Puzzle type is not valid, you chose {puzzle_type}. Please use one of these: {puzzle_types}")
+        raise Exception(f"Puzzle type is not valid, you chose {puzzle_type}. "
+                        f"Please use one of these: {puzzle_types}")
     print(f"{puzzle_type}")
 
     puzzle_rating_points = [d['points'] for d in rating_history if d['name'] == puzzle_type][0]
@@ -51,25 +52,37 @@ def print_ascii_tracker(ratings: list) -> None:
     print(asciichartpy.plot(ratings, config))
 
 def get_token_from_env():
+    """
+    Get API_TOKEN from environment
+
+    :return: api_token
+    :rtype: str
+    """
     try:
-        API_TOKEN = os.environ['API_TOKEN']
+        api_token = os.environ['API_TOKEN']
     except KeyError as keyerr:
         raise Exception(f"Environment variable {keyerr} does not exist") from keyerr
 
-    return API_TOKEN
+    return api_token
 
 def get_rating_type_from_env():
+    """
+    Get RATING_TYPE from environment
+
+    :return: rating_type
+    :rtype: str
+    """
     try:
-        RATING_TYPE = os.environ['RATING_TYPE']
+        rating_type = os.environ['RATING_TYPE']
     except KeyError as keyerr:
         raise Exception(f"Environment variable {keyerr} does not exist") from keyerr
 
-    return RATING_TYPE
+    return rating_type
 
 def main():
-    API_TOKEN=get_token_from_env()
-    RATING_TYPE=get_rating_type_from_env()
-    list_of_ratings = get_ratings_from_lichess(API_TOKEN, RATING_TYPE)
+    api_token=get_token_from_env()
+    rating_type=get_rating_type_from_env()
+    list_of_ratings = get_ratings_from_lichess(api_token, rating_type)
     print_ascii_tracker(list_of_ratings)
 
 

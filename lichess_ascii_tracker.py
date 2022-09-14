@@ -7,8 +7,8 @@ License: MIT
 """
 
 import os
-import berserk  # pylint import-error
-import asciichartpy  # pylint import-error
+import berserk  # pylint: disable=import-error
+import asciichartpy  # pylint: disable=import-error
 
 
 def get_ratings_from_lichess(api_token: str = None, rating_type: str = None) -> list:

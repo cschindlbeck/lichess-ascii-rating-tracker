@@ -1,7 +1,4 @@
-[![npm](https://img.shields.io/npm/v/asciichart.svg)](https://npmjs.com/package/asciichart)
-[![PyPI](https://img.shields.io/pypi/v/asciichartpy.svg)](https://pypi.python.org/pypi/asciichartpy)
-[![Travis](https://travis-ci.org/kroitor/asciichart.svg?branch=master)](https://travis-ci.org/kroitor/asciichart)
-[![Coverage Status](https://coveralls.io/repos/github/kroitor/asciichart/badge.svg?branch=master)](https://coveralls.io/github/kroitor/asciichart?branch=master) 
+<!-- [![Coverage Status](https://coveralls.io/repos/github/kroitor/asciichart/badge.svg?branch=master)](https://coveralls.io/github/kroitor/asciichart?branch=master) -->
 [![license](https://img.shields.io/github/license/kroitor/asciichart.svg)](https://github.com/kroitor/asciichart/blob/master/LICENSE.txt)
 
 # Lichess ASCII rating tracker

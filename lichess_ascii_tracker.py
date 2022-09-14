@@ -49,7 +49,9 @@ def print_ascii_tracker(ratings: list) -> None:
     :type ratings: list
     """
     config = {'height': 9, 'format': '{:8.0f}'}
-    print(repr(asciichartpy.plot(ratings, config)))
+    output = asciichartpy.plot(ratings, config)
+    output = output.replace('\n', '  ')
+    print(output)
 
 def get_token_from_env():
     """

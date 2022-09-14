@@ -50,7 +50,10 @@ def print_ascii_tracker(ratings: list) -> None:
     """
     config = {'height': 9, 'format': '{:8.0f}'}
     output = asciichartpy.plot(ratings, config)
-    output = output.replace('\n', '  ')
+
+    #output = output.split('\n')
+    #output = "z".join(output)
+    output.splitlines()
     print(output)
 
 def get_token_from_env():

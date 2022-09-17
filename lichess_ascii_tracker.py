@@ -26,6 +26,7 @@ def get_ratings_from_lichess(api_token: str = None, rating_type: str = None) -> 
     session = berserk.TokenSession(api_token)
     client = berserk.Client(session=session)
     user_id = client.account.get()['id']
+    print("  ")
     print(f"{user_id}")
     rating_history = client.users.get_rating_history(user_id)
 
@@ -41,7 +42,7 @@ def get_ratings_from_lichess(api_token: str = None, rating_type: str = None) -> 
     ratings = [row[3] for row in puzzle_rating_points]
     return ratings
 
-def print_ascii_tracker(ratings: list) -> None:
+def result_from_ascii(ratings: list) -> str:
     """
     Prints ASCII tracker given a list of ratings using asciichartpy
 
@@ -49,18 +50,28 @@ def print_ascii_tracker(ratings: list) -> None:
     :type ratings: list
     """
     config = {'height': 9, 'format': '{:8.0f}'}
-    output = asciichartpy.plot(ratings, config)
+    result = asciichartpy.plot(ratings, config)
 
-    #output = output.split('\n')
-    #output = "z".join(output)
-    output.splitlines()
-    print(output)
+    return result
 
-def get_token_from_env():
+def print_to_markdown(text: str) -> None:
     """
-    Get API_TOKEN from environment
+    Prints text with decorator for HTML/Markdown
 
-    :return: api_token
+    :param ratings: String to be printed to HTML/Markdown
+    :type ratings: list
+    """
+    print("<pre>")
+    print("<code>")
+    print(text)
+    print("</code>")
+    print("</pre>")
+
+def get_token_from_env() -> str:
+    """
+    Api token from env variable
+
+    :return: Api token from env variable
     :rtype: str
     """
     try:
@@ -70,11 +81,11 @@ def get_token_from_env():
 
     return api_token
 
-def get_rating_type_from_env():
+def get_rating_type_from_env() -> str:
     """
-    Get RATING_TYPE from environment
+    Rating type from env variable
 
-    :return: rating_type
+    :return: Rating type from env variable
     :rtype: str
     """
     try:
@@ -88,10 +99,11 @@ def main():
     """
     Main function
     """
-    api_token=get_token_from_env()
-    rating_type=get_rating_type_from_env()
-    list_of_ratings = get_ratings_from_lichess(api_token, rating_type)
-    print_ascii_tracker(list_of_ratings)
+    API_TOKEN=get_token_from_env()
+    RATING_TYPE=get_rating_type_from_env()
+    list_of_ratings = get_ratings_from_lichess(API_TOKEN, RATING_TYPE)
+    result = result_from_ascii(list_of_ratings)
+    print_to_markdown(result)
 
 
 if __name__ == "__main__":

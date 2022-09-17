@@ -99,9 +99,9 @@ def main():
     """
     Main function
     """
-    API_TOKEN=get_token_from_env()
-    RATING_TYPE=get_rating_type_from_env()
-    list_of_ratings = get_ratings_from_lichess(API_TOKEN, RATING_TYPE)
+    api_token=get_token_from_env()
+    rating_type=get_rating_type_from_env()
+    list_of_ratings = get_ratings_from_lichess(api_token, rating_type)
     result = result_from_ascii(list_of_ratings)
     print_to_markdown(result)
 

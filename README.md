@@ -8,7 +8,7 @@
 
 Generates ASCII charts of Lichess ratings. Seamless CI integration for updating it.
 
-rating type is 
+rating type is Blitz
   
 
 

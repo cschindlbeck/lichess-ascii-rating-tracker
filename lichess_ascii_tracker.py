@@ -29,7 +29,6 @@ class LichessChartGenerator:
         try:
             session = berserk.TokenSession(api_token)
             self.client = berserk.Client(session=session)
-            user_id2 = self.client.account.get()['id']
         except ResponseError as err:
             print(f"No such token {api_token}")
 

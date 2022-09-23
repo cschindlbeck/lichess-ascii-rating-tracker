@@ -9,7 +9,6 @@ License: MIT
 import os
 from datetime import datetime
 import berserk  # pylint: disable=import-error
-from berserk.exceptions import ResponseError
 import asciichartpy  # pylint: disable=import-error
 
 class LichessChartGenerator:
@@ -26,11 +25,8 @@ class LichessChartGenerator:
                             f" {keyerr} does not exist") from keyerr
 
         # put try catch in case of invalid token
-        try:
-            session = berserk.TokenSession(api_token)
-            self.client = berserk.Client(session=session)
-        except ResponseError as err:
-            print(f"No such token {api_token}")
+        session = berserk.TokenSession(api_token)
+        self.client = berserk.Client(session=session)
 
         try:
             self.rating_type = os.environ['RATING_TYPE']

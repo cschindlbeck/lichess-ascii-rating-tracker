@@ -109,7 +109,7 @@ def main():
     Main function
     """
     try:
-        rating_type = os.environ['PUZZLE_TYPE']
+        rating_type = os.environ['RATING_TYPE']
     except KeyError as keyerr:
         raise Exception(f"RATING_TYPE must be passed, environment variable"
                         f" {keyerr} does not exist") from keyerr

@@ -24,7 +24,7 @@ class LichessChartGenerator:
             raise Exception(f"RATING_TYPE must be passed, environment variable"
                             f" {keyerr} does not exist") from keyerr
 
-        print(f"rating type is {RATING_TYPE}")
+        print(f"rating type is {self.rating_type}")
 
 
         try:

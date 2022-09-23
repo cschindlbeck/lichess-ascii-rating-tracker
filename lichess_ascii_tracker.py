@@ -18,14 +18,6 @@ class LichessChartGenerator:
 
     """
     def __init__(self):
-        try:
-            self.rating_type = os.environ['RATING_TYPE']
-        except KeyError as keyerr:
-            raise Exception(f"RATING_TYPE must be passed, environment variable"
-                            f" {keyerr} does not exist") from keyerr
-
-        print(f"rating type is {self.rating_type}")
-
 
         try:
             api_token = os.environ['API_TOKEN']
@@ -40,6 +32,12 @@ class LichessChartGenerator:
             user_id2 = self.client.account.get()['id']
         except ResponseError as err:
             print(f"No such token {api_token}")
+
+        try:
+            self.rating_type = os.environ['RATING_TYPE']
+        except KeyError as keyerr:
+            raise Exception(f"RATING_TYPE must be passed, environment variable"
+                            f" {keyerr} does not exist") from keyerr
 
     def run(self):
         """
@@ -108,15 +106,8 @@ def main():
     """
     Main function
     """
-    try:
-        rating_type = os.environ['RATING_TYPE']
-    except KeyError as keyerr:
-        raise Exception(f"RATING_TYPE must be passed, environment variable"
-                        f" {keyerr} does not exist") from keyerr
-
-    print(f"rating type is {rating_type}")
-    #lichess_chart_generator = LichessChartGenerator()
-    #lichess_chart_generator.run()
+    lichess_chart_generator = LichessChartGenerator()
+    lichess_chart_generator.run()
 
 
 if __name__ == "__main__":

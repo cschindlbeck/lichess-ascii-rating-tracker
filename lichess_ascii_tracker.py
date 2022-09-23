@@ -114,7 +114,7 @@ def main():
         raise Exception(f"RATING_TYPE must be passed, environment variable"
                         f" {keyerr} does not exist") from keyerr
 
-    print(f"rating type is {self.rating_type}")
+    print(f"rating type is {rating_type}")
     #lichess_chart_generator = LichessChartGenerator()
     #lichess_chart_generator.run()
 

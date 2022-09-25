@@ -8,3 +8,5 @@
 
 Generates ASCII charts of Lichess ratings. Seamless CI integration for updating it.
 
+Example:
+

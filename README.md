@@ -4,15 +4,15 @@
 ![docker workflow](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/docker-image.yml/badge.svg)
 ![build readme](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/build-readme.yml/badge.svg)
 
-# Lichess ASCII chart generator &#9812;
+# &#9816; Lichess ASCII rating generator
 
-Generates ASCII charts of Lichess ratings. Seamless CI integration for updating it.
+Generates ASCII charts of [lichess](https://lichess.org/) ratings.
 
 Example:
 
 <pre>
 <code>
-User: christopsy666, Rating type: Blitz on lichess.org &#9822;	
+User: christopsy666, Rating type: Blitz on lichess.org
 
     1776 ┤                                                                      ╭
     1736 ┤                                                                      │
@@ -26,9 +26,11 @@ User: christopsy666, Rating type: Blitz on lichess.org &#9822;
     1415 ┼╯
     1375 ┤
 
-Last update: 25.09.2022 13:53:50
+Last update: 25.09.2022 14:34:26
 </code>
 </pre>
+Follow me on [![Lichess Badge](https://img.shields.io/static/v1?style=flat&message=Lichess&color=000000&logo=Lichess&logoColor=FFFFFF&label=)](https://lichess.org/@/christopsy666)
+
 ## Installation
 
 Install the python dependencies via requirements.txt via
@@ -52,7 +54,17 @@ For convenience, put them in you .bashrc
 python3 lichess_ascii_rating_tracker.py
 ```
 
-The output can be piped to a file
+The output can be piped to a file, but should be enclosed with
+
+```html
+<pre>
+<code>
+generated_output
+</code>
+</pre>
+```
+
+for Markdown to preserve whitespaces.
 
 ## Docker
 

@@ -4,7 +4,7 @@
 ![docker workflow](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/docker-image.yml/badge.svg)
 ![build readme](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/build-readme.yml/badge.svg)
 
-# Lichess ASCII chart generator
+# Lichess ASCII chart generator &#9812;
 
 Generates ASCII charts of Lichess ratings. Seamless CI integration for updating it.
 
@@ -12,7 +12,7 @@ Example:
 
 <pre>
 <code>
-User: christopsy666, Rating type: Blitz on lichess.org
+User: christopsy666, Rating type: Blitz on lichess.org &#9822;	
 
     1776 ┤                                                                      ╭
     1736 ┤                                                                      │

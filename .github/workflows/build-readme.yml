@@ -1,12 +1,12 @@
 name: Build README
 
 on:
-  #push:
-  #  branches: [ "master" ]
-  #pull_request:
-  #  branches: [ "master" ]
-  schedule:
-    - cron: "*/10 * * * *"
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  #schedule:
+  #- cron: "*/10 * * * *"
 
 env:
   API_TOKEN: ${{ secrets.API_TOKEN }}
@@ -20,12 +20,11 @@ jobs:
       uses: actions/checkout@v2
     - name: Build README
       run: |
-        cat doc/README_0.md > README.md
         sudo rm -rf /usr/lib/python3/dist-packages/simplejson
         pip install -r requirements.txt
+        cat doc/README_prelude.md > README.md
         python3 lichess_ascii_tracker.py >> README.md
-        cat doc/README_1.md >> README.md
-        cat doc/README_2.md >> README.md
+        cat doc/README_epilogue.md >> README.md
     - name: Push code
       run: |
         git config --global user.name "github-actions[bot]"

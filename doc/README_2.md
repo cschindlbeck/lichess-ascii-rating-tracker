@@ -21,7 +21,17 @@ For convenience, put them in you .bashrc
 python3 lichess_ascii_rating_tracker.py
 ```
 
-The output can be piped to a file
+The output can be piped to a file, but should be enclosed with
+
+```html
+<pre>
+<code>
+generated_output
+</code>
+</pre>
+```
+
+for Markdown to preserve whitespaces.
 
 ## Docker
 

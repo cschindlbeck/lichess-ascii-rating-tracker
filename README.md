@@ -10,6 +10,8 @@ Generates ASCII charts of Lichess ratings. Seamless CI integration for updating 
 
 Example:
 
+<pre>
+<code>
 User: christopsy666, Rating type: Blitz on lichess.org
 
     1776 ┤                                                                      ╭
@@ -24,8 +26,9 @@ User: christopsy666, Rating type: Blitz on lichess.org
     1415 ┼╯
     1375 ┤
 
-Last update: 25.09.2022 13:49:36
-  
+Last update: 25.09.2022 13:53:50
+</code>
+</pre>
 ## Installation
 
 Install the python dependencies via requirements.txt via

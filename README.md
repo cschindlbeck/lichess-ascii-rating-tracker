@@ -8,6 +8,25 @@
 
 Generates ASCII charts of Lichess ratings. Seamless CI integration for updating it.
 
+<pre>
+<code>
+User: christopsy666, Rating type: Blitz on lichess.org
+
+    1776 ┤                                                                      ╭
+    1736 ┤                                                                      │
+    1696 ┤                                                                 ╭────╯
+    1656 ┤                                     ╭╮                    ╭─────╯
+    1616 ┤                                 ╭───╯╰────────────╮╭╮  ╭──╯
+    1576 ┤                      ╭╮ ╭╮     ╭╯                 ╰╯╰──╯
+    1535 ┤ ╭╮    ╭─╮╭────╮╭╮╭───╯╰╮│╰─────╯
+    1495 ┤ │╰╮╭──╯ ╰╯    ╰╯╰╯     ╰╯
+    1455 ┤╭╯ ╰╯
+    1415 ┼╯
+    1375 ┤
+
+Last update: 25.09.2022 12:43:58
+</code>
+</pre>
   
 
 

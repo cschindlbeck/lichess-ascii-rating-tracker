@@ -20,7 +20,8 @@ jobs:
       run: |
         cat doc/README_0.md > README.md
         pip install -r requirements.txt
-        python3 lichess_ascii_tracker.py >> README.md
+        pip list 
+        # python3 lichess_ascii_tracker.py >> README.md
         cat doc/README_1.md >> README.md
         cat doc/README_2.md >> README.md
     - name: Push code

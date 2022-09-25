@@ -23,7 +23,9 @@ jobs:
         pip install -r requirements.txt
         echo "<pre>" >> README
         echo "<code>" >> README
+        echo "" >> README
         python3 lichess_ascii_tracker.py >> README.md
+        echo "" >> README
         echo "</code>" >> README
         echo "</pre>" >> README
         cat doc/README_1.md >> README.md

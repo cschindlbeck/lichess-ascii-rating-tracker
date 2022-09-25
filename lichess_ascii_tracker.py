@@ -83,8 +83,6 @@ class LichessChartGenerator:
         :param ratings: String to be printed to HTML/Markdown
         :type ratings: list
         """
-        print("<pre>")
-        print("<code>")
         print(f"User: {text}, Rating type: {self.rating_type} on lichess.org")
         print("")
         print(text2)
@@ -93,8 +91,6 @@ class LichessChartGenerator:
         now = datetime.now()
         dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
         print(f"Last update: {dt_string}")
-        print("</code>")
-        print("</pre>")
 
 
 def main():

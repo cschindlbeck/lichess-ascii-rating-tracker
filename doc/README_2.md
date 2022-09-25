@@ -1,3 +1,5 @@
+Follow me on [![Lichess Badge](https://img.shields.io/static/v1?style=flat&message=Lichess&color=000000&logo=Lichess&logoColor=FFFFFF&label=)](https://lichess.org/@/christopsy666)
+
 ## Installation
 
 Install the python dependencies via requirements.txt via

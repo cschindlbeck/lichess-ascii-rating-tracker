@@ -19,8 +19,9 @@ jobs:
     - name: Build README
       run: |
         cat doc/README_0.md > README.md
+        pip uninstall -y simplejson
         pip install -r requirements.txt
-        pip list freeze
+        # pip list freeze
         python3 lichess_ascii_tracker.py >> README.md
         cat doc/README_1.md >> README.md
         cat doc/README_2.md >> README.md

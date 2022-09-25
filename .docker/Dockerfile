@@ -6,5 +6,7 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-#CMD ["/bin/bash"]
-CMD ["./lichess_ascii_tracker.py"]
+RUN pip uninstall -y simplejson
+
+CMD ["/bin/bash"]
+#CMD ["./lichess_ascii_tracker.py"]

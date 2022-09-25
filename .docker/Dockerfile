@@ -6,4 +6,5 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
+#CMD ["/bin/bash"]
 CMD ["./lichess_ascii_tracker.py"]

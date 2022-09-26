@@ -7,6 +7,7 @@ License: MIT
 """
 
 import os
+import sys, getopt
 from datetime import datetime
 import berserk  # pylint: disable=import-error
 import asciichartpy  # pylint: disable=import-error
@@ -16,7 +17,13 @@ class LichessChartGenerator:
     Class to generate ascii chart of lichess ratings
 
     """
-    def __init__(self):
+    def __init__(self, rating_type=None):
+
+        if rating_type is None:
+            raise TypeError("rating_type must be set")
+
+        # check if rating type is in valid dict of ratings
+        self.rating_type = rating_type
 
         try:
             api_token = os.environ['API_TOKEN']
@@ -28,11 +35,6 @@ class LichessChartGenerator:
         session = berserk.TokenSession(api_token)
         self.client = berserk.Client(session=session)
 
-        try:
-            self.rating_type = os.environ['RATING_TYPE']
-        except KeyError as keyerr:
-            raise Exception(f"RATING_TYPE must be passed, environment variable"
-                            f" {keyerr} does not exist") from keyerr
 
     def run(self):
         """
@@ -93,13 +95,47 @@ class LichessChartGenerator:
         print(f"Last update: {dt_string}")
 
 
-def main():
+def main2(rating_type=None):
     """
     Main function
     """
-    lichess_chart_generator = LichessChartGenerator()
+
+
+    # if __name__ == "__main__":
+    # args = rospy.myargv(argv=sys.argv)
+
+    # if len(args) > 2:
+        # raise TypeError("Invalid nr of arguments")
+    # elif len(args) == 2 and args[1] == "true":
+        # main()
+        # main()
+    # else:
+
+
+
+def main(argv):
+    """
+    Main function
+    """
+    rating_type = None
+
+    try:
+        opts, args = getopt.getopt(argv,"hi:",["ifile="])
+    except getopt.GetoptError:
+        print('test.py -i <rating_type>')
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt == '-h':
+            print('test.py -i <rating_type>')
+            sys.exit()
+        elif opt in ("-i", "--ifile"):
+            rating_type = arg
+
+    print('Rating type is "', rating_type)
+
+    lichess_chart_generator = LichessChartGenerator(rating_type)
     lichess_chart_generator.run()
 
-
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

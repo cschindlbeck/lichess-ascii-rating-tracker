@@ -111,7 +111,6 @@ class LichessChartGenerator:
          | |____| | (__| | | |  __/\__ \__ \
          |______|_|\___|_| |_|\___||___/___/
         """)
-        print("")
         print(rating)
         print("")
         # dd/mm/YY H:M:S

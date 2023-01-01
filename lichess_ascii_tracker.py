@@ -7,16 +7,21 @@ License: MIT
 """
 
 import os
-import sys, getopt
+import sys
+import getopt
 from datetime import datetime
 import berserk  # pylint: disable=import-error
 import asciichartpy  # pylint: disable=import-error
+
+HSIZE = 60
+
 
 class LichessChartGenerator:
     """
     Class to generate ascii chart of lichess ratings
 
     """
+
     def __init__(self, rating_type=None):
 
         if rating_type is None:
@@ -34,7 +39,6 @@ class LichessChartGenerator:
         # put try catch in case of invalid token
         session = berserk.TokenSession(api_token)
         self.client = berserk.Client(session=session)
-
 
     def run(self):
         """
@@ -59,11 +63,22 @@ class LichessChartGenerator:
         puzzle_type = self.rating_type
         puzzle_types = [d['name'] for d in rating_history if 'name' in d]
         if puzzle_type not in puzzle_types:
-            raise Exception(f"Puzzle type is not valid, you chose {puzzle_type}. "
+            raise Exception(f"Puzzle type is not valid,"
+                            f"you chose {puzzle_type}. "
                             f"Please use one of these: {puzzle_types}")
 
-        puzzle_rating_points = [d['points'] for d in rating_history if d['name'] == puzzle_type][0]
+        prp = [d['points'] for d in rating_history if d['name'] == puzzle_type]
+        puzzle_rating_points = prp[0]
         ratings = [row[3] for row in puzzle_rating_points]
+
+        if len(ratings) == 0:
+            raise Exception("Puzzle type never played")
+
+        # reduce list len to fit screen
+        if len(ratings) >= HSIZE:
+            step = int(len(ratings)/HSIZE)
+            ratings = ratings[0:len(ratings):step]
+
         return (user_id, ratings)
 
     def result_from_ascii(self, ratings: list) -> str:
@@ -78,39 +93,32 @@ class LichessChartGenerator:
 
         return result
 
-    def print_to_markdown(self, text: str, text2: str) -> None:
+    def print_to_markdown(self, user_name: str, rating: str) -> None:
         """
         Prints text with decorator for HTML/Markdown
 
-        :param ratings: String to be printed to HTML/Markdown
-        :type ratings: list
+        :param user_name: String of user_name
+        :type user_name: str
+        :param text: ratings
+        :type text: str
         """
-        print(f"User: {text}, Rating type: {self.rating_type} on lichess.org")
-        print("")
-        print(text2)
+
+        print(r"""
+          _      _      _
+         | |    (_)    | |
+         | |     _  ___| |__   ___  ___ ___
+         | |    | |/ __| '_ \ / _ \/ __/ __|
+         | |____| | (__| | | |  __/\__ \__ \
+         |______|_|\___|_| |_|\___||___/___/
+        """)
+        print(rating)
         print("")
         # dd/mm/YY H:M:S
         now = datetime.now()
         dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
+        print(f"User: {user_name}, "
+              f"Rating type: {self.rating_type} on lichess.org")
         print(f"Last update: {dt_string}")
-
-
-def main2(rating_type=None):
-    """
-    Main function
-    """
-
-
-    # if __name__ == "__main__":
-    # args = rospy.myargv(argv=sys.argv)
-
-    # if len(args) > 2:
-        # raise TypeError("Invalid nr of arguments")
-    # elif len(args) == 2 and args[1] == "true":
-        # main()
-        # main()
-    # else:
-
 
 
 def main(argv):
@@ -120,22 +128,21 @@ def main(argv):
     rating_type = None
 
     try:
-        opts, args = getopt.getopt(argv,"hi:",["ifile="])
+        opts, _ = getopt.getopt(argv, "hr:", ["rfile="])
     except getopt.GetoptError:
-        print('test.py -i <rating_type>')
+        print('test.py -r <rating_type>')
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-h':
-            print('test.py -i <rating_type>')
+            print('test.py -r <rating_type>')
             sys.exit()
-        elif opt in ("-i", "--ifile"):
+        elif opt in ("-r", "--rfile"):
             rating_type = arg
-
-    print('Rating type is "', rating_type)
 
     lichess_chart_generator = LichessChartGenerator(rating_type)
     lichess_chart_generator.run()
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

@@ -12,21 +12,28 @@ Example:
 
 <pre>
 <code>
-User: christopsy666, Rating type: Blitz on lichess.org
 
-    1776 ┤                                                                      ╭
-    1736 ┤                                                                      │
-    1696 ┤                                                                 ╭────╯
-    1656 ┤                                     ╭╮                    ╭─────╯
-    1616 ┤                                 ╭───╯╰────────────╮╭╮  ╭──╯
-    1576 ┤                      ╭╮ ╭╮     ╭╯                 ╰╯╰──╯
-    1535 ┤ ╭╮    ╭─╮╭────╮╭╮╭───╯╰╮│╰─────╯
-    1495 ┤ │╰╮╭──╯ ╰╯    ╰╯╰╯     ╰╯
-    1455 ┤╭╯ ╰╯
-    1415 ┼╯
-    1375 ┤
+          _      _      _
+         | |    (_)    | |
+         | |     _  ___| |__   ___  ___ ___
+         | |    | |/ __| '_ \ / _ \/ __/ __|
+         | |____| | (__| | | |  __/\__ \__ \
+         |______|_|\___|_| |_|\___||___/___/
+        
+    1934 ┤
+    1866 ┤                                              ╭──╮╭──╮    ╭─╮
+    1797 ┤                                ╭╮     ╭╮╭╮ ╭─╯  ╰╯  ╰╮╭──╯ ╰─
+    1729 ┤                           ╭╮  ╭╯╰╮╭──╮│╰╯╰─╯         ╰╯
+    1660 ┤                          ╭╯│╭╮│  ╰╯  ╰╯
+    1592 ┤                      ╭╮╭╮│ ╰╯╰╯
+    1524 ┼╮    ╭──╮      ╭╮╭────╯╰╯╰╯
+    1455 ┤│   ╭╯  │╭─╮╭╮╭╯╰╯
+    1387 ┤╰╮ ╭╯   ╰╯ ╰╯╰╯
+    1318 ┤ │╭╯
+    1250 ┤ ╰╯
 
-Last update: 29.09.2022 05:30:42
+User: christopsy666, Rating type: Bullet on lichess.org
+Last update: 01.01.2023 13:52:08
 </code>
 </pre>
 
@@ -40,20 +47,23 @@ Install the python dependencies via requirements.txt via
 pip install -r requirements.txt
 ```
 
-and export the environment variables via
+and export your lichess API token as environment variables via
 
 ```bash
 export API_TOKEN=your_lichess_api_token
-export PUZZLE_TYPE=Bullet
 ```
 
-For convenience, put them in you .bashrc
+For convenience, put this in you .bashrc
 
 ## Usage
 
 ```bash
-python3 lichess_ascii_rating_tracker.py
+python3 lichess_ascii_rating_tracker.py -r puzzle_type
 ```
+
+where puzzle_type is one of the following:
+
+Bullet, Blitz, Rapid, Classical, Correspondence, Chess960, King of the Hill, Three-check, Antichess, Atomic, Horde, Racing Kings, Crazyhouse, Puzzles, UltraBullet
 
 The output can be piped to a file, but should be enclosed with
 
@@ -69,17 +79,18 @@ for Markdown to preserve whitespaces.
 
 ## Docker
 
-Alternatively, you can use docker compose to generate an ascii chart.
+Alternatively, you can use docker compose to generate an ASCII chart.
 
 First, build the image via
 
 ```bash
 cd .docker
-docker compose build lichess
+docker compose build
 ```
 
 and then run it via
 
 ```bash
-docker compose run lichess
+docker run -it -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -r Bullet
 ```
+

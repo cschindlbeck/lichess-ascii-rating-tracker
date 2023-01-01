@@ -12,7 +12,14 @@ Example:
 
 <pre>
 <code>
-User: christopsy666, Rating type: Bullet on lichess.org
+
+          _      _      _
+         | |    (_)    | |
+         | |     _  ___| |__   ___  ___ ___
+         | |    | |/ __| '_ \ / _ \/ __/ __|
+         | |____| | (__| | | |  __/\__ \__ \
+         |______|_|\___|_| |_|\___||___/___/
+        
 
     1934 ┤
     1866 ┤                                              ╭──╮╭──╮    ╭─╮
@@ -26,7 +33,8 @@ User: christopsy666, Rating type: Bullet on lichess.org
     1318 ┤ │╭╯
     1250 ┤ ╰╯
 
-Last update: 01.01.2023 13:22:15
+User: christopsy666, Rating type: Bullet on lichess.org
+Last update: 01.01.2023 13:30:29
 </code>
 </pre>
 

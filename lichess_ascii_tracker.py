@@ -102,14 +102,23 @@ class LichessChartGenerator:
         :param text: ratings
         :type text: str
         """
-        print(f"User: {user_name}, "
-              f"Rating type: {self.rating_type} on lichess.org")
+
+        print(r"""
+          _      _      _
+         | |    (_)    | |
+         | |     _  ___| |__   ___  ___ ___
+         | |    | |/ __| '_ \ / _ \/ __/ __|
+         | |____| | (__| | | |  __/\__ \__ \
+         |______|_|\___|_| |_|\___||___/___/
+        """)
         print("")
         print(rating)
         print("")
         # dd/mm/YY H:M:S
         now = datetime.now()
         dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
+        print(f"User: {user_name}, "
+              f"Rating type: {self.rating_type} on lichess.org")
         print(f"Last update: {dt_string}")
 
 

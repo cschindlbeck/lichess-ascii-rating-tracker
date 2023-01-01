@@ -55,6 +55,6 @@ docker compose build
 and then run it via
 
 ```bash
-docker run -it -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -i bullet
+docker run -it -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -r Bullet
 ```
 

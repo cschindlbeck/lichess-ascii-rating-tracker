@@ -52,7 +52,7 @@ For convenience, put them in you .bashrc
 ## Usage
 
 ```bash
-python3 lichess_ascii_rating_tracker.py
+./lichess_ascii_rating_tracker.py -r Bullet
 ```
 
 The output can be piped to a file, but should be enclosed with

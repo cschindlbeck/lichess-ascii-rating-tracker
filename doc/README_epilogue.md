@@ -49,11 +49,12 @@ First, build the image via
 
 ```bash
 cd .docker
-docker compose build lichess
+docker compose build
 ```
 
 and then run it via
 
 ```bash
-docker compose run lichess
+docker run -it -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -i bullet
 ```
+

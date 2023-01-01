@@ -12,6 +12,7 @@ Example:
 
 <pre>
 <code>
+<<<<<<< HEAD
 
           _      _      _
          | |    (_)    | |
@@ -35,6 +36,23 @@ Example:
 
 User: christopsy666, Rating type: Bullet on lichess.org
 Last update: 01.01.2023 13:30:29
+=======
+User: christopsy666, Rating type: Bullet on lichess.org
+
+    1991 ┤                                                                                                                                                                                                                                                                                                                        ╭─
+    1909 ┤                                                                                                                                                                                                                                 ╭╮       ╭─╮ ╭──────────╮╭─────╮  ╭──╮ ╭╮                     ╭──╮ ╭╮╭──╮ ╭╮╭╮ ╭╮  ╭╮╭─╯
+    1828 ┤                                                                                                                                                              ╭╮  ╭╮╭─╮╭─╮      ╭────╮╭─╮      ╭──╮    ╭────╮ ╭╮ ╭─╮      ╭──────╯╰───────╯ ╰─╯          ╰╯     ╰──╯  ╰─╯╰─────────╮ ╭╮╭───────╯  ╰─╯╰╯  ╰─╯╰╯╰─╯╰──╯╰╯
+    1746 ┤                                                                                                                                        ╭───╮        ╭╮    ╭──╯╰╮╭╯╰╯ ╰╯ ╰───╮ ╭╯    ╰╯ ╰─╮ ╭──╯  ╰╮╭──╯    ╰─╯╰─╯ ╰──────╯                                                        ╰─╯╰╯
+    1664 ┤                                                                                                                    ╭╮     ╭──╮╭╮ ╭──╮╭─╯   ╰────────╯╰────╯    ╰╯           ╰─╯          ╰─╯      ╰╯
+    1582 ┼╮                             ╭╮  ╭╮  ╭╮           ╭─╮                     ╭╮  ╭────╮     ╭────╮  ╭──╮ ╭────────────╯╰─╮  ╭╯  ╰╯╰─╯  ╰╯
+    1501 ┤╰──╮                    ╭╮   ╭╯╰╮╭╯╰──╯╰╮╭─╮   ╭╮╭─╯ ╰──╮       ╭───╮  ╭───╯│╭─╯    ╰─────╯    ╰──╯  ╰─╯               ╰──╯
+    1419 ┤   ╰─╮        ╭──╮ ╭╮╭──╯╰╮╭─╯  ╰╯      ╰╯ ╰───╯╰╯      ╰───────╯   ╰──╯    ╰╯
+    1337 ┤     ╰───────╮│  ╰╮│╰╯    ╰╯
+    1256 ┤             ╰╯   ╰╯
+    1174 ┤
+
+Last update: 28.11.2022 20:06:39
+>>>>>>> bug fix
 </code>
 </pre>
 
@@ -59,7 +77,11 @@ For convenience, put this in you .bashrc
 ## Usage
 
 ```bash
+<<<<<<< HEAD
 python3 lichess_ascii_rating_tracker.py -r puzzle_type
+=======
+python3 lichess_ascii_rating_tracker.py -i <rating_type>
+>>>>>>> bug fix
 ```
 
 where puzzle_type is one of the following:
@@ -86,11 +108,12 @@ First, build the image via
 
 ```bash
 cd .docker
-docker compose build lichess
+docker compose build
 ```
 
 and then run it via
 
 ```bash
-docker compose run lichess
+docker run -it -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -i bullet
 ```
+

@@ -24,7 +24,7 @@ jobs:
         sudo rm -rf /usr/lib/python3/dist-packages/simplejson
         pip install -r requirements.txt
         cat doc/README_prelude.md > README.md
-        python3 lichess_ascii_tracker.py >> README.md
+        python3 lichess_ascii_tracker.py -r Bullet >> README.md
         cat doc/README_epilogue.md >> README.md
     - name: Push code
       run: |

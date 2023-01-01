@@ -13,6 +13,8 @@ from datetime import datetime
 import berserk  # pylint: disable=import-error
 import asciichartpy  # pylint: disable=import-error
 
+HSIZE = 60
+
 
 class LichessChartGenerator:
     """
@@ -73,8 +75,8 @@ class LichessChartGenerator:
             raise Exception("Puzzle type never played")
 
         # reduce list len to fit screen
-        if len(ratings) >= 60:
-            step = int(len(ratings)/60)
+        if len(ratings) >= HSIZE:
+            step = int(len(ratings)/HSIZE)
             ratings = ratings[0:len(ratings):step]
 
         return (user_id, ratings)

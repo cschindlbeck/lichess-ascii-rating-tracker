@@ -12,21 +12,21 @@ Example:
 
 <pre>
 <code>
-User: christopsy666, Rating type: Blitz on lichess.org
+User: christopsy666, Rating type: Bullet on lichess.org
 
-    1776 ┤                                                                      ╭
-    1736 ┤                                                                      │
-    1696 ┤                                                                 ╭────╯
-    1656 ┤                                     ╭╮                    ╭─────╯
-    1616 ┤                                 ╭───╯╰────────────╮╭╮  ╭──╯
-    1576 ┤                      ╭╮ ╭╮     ╭╯                 ╰╯╰──╯
-    1535 ┤ ╭╮    ╭─╮╭────╮╭╮╭───╯╰╮│╰─────╯
-    1495 ┤ │╰╮╭──╯ ╰╯    ╰╯╰╯     ╰╯
-    1455 ┤╭╯ ╰╯
-    1415 ┼╯
-    1375 ┤
+    1934 ┤
+    1866 ┤                                              ╭──╮╭──╮    ╭─╮
+    1797 ┤                                ╭╮     ╭╮╭╮ ╭─╯  ╰╯  ╰╮╭──╯ ╰─
+    1729 ┤                           ╭╮  ╭╯╰╮╭──╮│╰╯╰─╯         ╰╯
+    1660 ┤                          ╭╯│╭╮│  ╰╯  ╰╯
+    1592 ┤                      ╭╮╭╮│ ╰╯╰╯
+    1524 ┼╮    ╭──╮      ╭╮╭────╯╰╯╰╯
+    1455 ┤│   ╭╯  │╭─╮╭╮╭╯╰╯
+    1387 ┤╰╮ ╭╯   ╰╯ ╰╯╰╯
+    1318 ┤ │╭╯
+    1250 ┤ ╰╯
 
-Last update: 29.09.2022 05:30:42
+Last update: 01.01.2023 13:13:03
 </code>
 </pre>
 
@@ -52,7 +52,7 @@ For convenience, put them in you .bashrc
 ## Usage
 
 ```bash
-./lichess_ascii_rating_tracker.py -r Bullet
+python3 lichess_ascii_rating_tracker.py
 ```
 
 The output can be piped to a file, but should be enclosed with

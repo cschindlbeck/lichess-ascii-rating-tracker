@@ -26,7 +26,7 @@ User: christopsy666, Rating type: Bullet on lichess.org
     1318 ┤ │╭╯
     1250 ┤ ╰╯
 
-Last update: 01.01.2023 13:14:22
+Last update: 01.01.2023 13:22:15
 </code>
 </pre>
 
@@ -40,20 +40,23 @@ Install the python dependencies via requirements.txt via
 pip install -r requirements.txt
 ```
 
-and export the environment variables via
+and export your lichess API token as environment variables via
 
 ```bash
 export API_TOKEN=your_lichess_api_token
-export PUZZLE_TYPE=Bullet
 ```
 
-For convenience, put them in you .bashrc
+For convenience, put this in you .bashrc
 
 ## Usage
 
 ```bash
-python3 lichess_ascii_rating_tracker.py
+python3 lichess_ascii_rating_tracker.py -r puzzle_type
 ```
+
+where puzzle_type is one of the following:
+
+Bullet, Blitz, Rapid, Classical, Correspondence, Chess960, King of the Hill, Three-check, Antichess, Atomic, Horde, Racing Kings, Crazyhouse, Puzzles, UltraBullet
 
 The output can be piped to a file, but should be enclosed with
 
@@ -69,7 +72,7 @@ for Markdown to preserve whitespaces.
 
 ## Docker
 
-Alternatively, you can use docker compose to generate an ascii chart.
+Alternatively, you can use docker compose to generate an ASCII chart.
 
 First, build the image via
 

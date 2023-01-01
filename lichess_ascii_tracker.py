@@ -118,7 +118,7 @@ def main(argv):
     rating_type = None
 
     try:
-        opts, args = getopt.getopt(argv, "hr:", ["rfile="])
+        opts, _ = getopt.getopt(argv, "hr:", ["rfile="])
     except getopt.GetoptError:
         print('test.py -r <rating_type>')
         sys.exit(2)

@@ -19,7 +19,7 @@ Example:
          | |    | |/ __| '_ \ / _ \/ __/ __|
          | |____| | (__| | | |  __/\__ \__ \
          |______|_|\___|_| |_|\___||___/___/
-        
+
     1934 ┤
     1866 ┤                                              ╭──╮╭──╮    ╭─╮
     1797 ┤                                ╭╮     ╭╮╭╮ ╭─╯  ╰╯  ╰╮╭──╯ ╰─
@@ -33,7 +33,7 @@ Example:
     1250 ┤ ╰╯
 
 User: christopsy666, Rating type: Bullet on lichess.org
-Last update: 01.01.2023 13:54:26
+Last update: 02.04.2023 20:42:03
 </code>
 </pre>
 
@@ -93,4 +93,3 @@ and then run it via
 ```bash
 docker run -it -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -r Bullet
 ```
-

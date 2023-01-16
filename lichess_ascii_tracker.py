@@ -119,7 +119,7 @@ class LichessChartGenerator:
         # dd/mm/YY H:M:S
         now = datetime.now()
         dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
-        print(f"User: {user_name}, " f"Rating type: {self.rating_type} on lichess.org")
+        print(f"User: {user_name}, Rating type: {self.rating_type} on lichess.org")
         print(f"Last update: {dt_string}")
 
 

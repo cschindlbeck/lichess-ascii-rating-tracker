@@ -6,12 +6,14 @@ Author: Chris Schindlbeck
 License: MIT
 """
 
+
 import os
 import sys
 import getopt
 from datetime import datetime
-import berserk  # pylint: disable=import-error
-import asciichartpy  # pylint: disable=import-error
+import berserk  # type: ignore
+import asciichartpy  # type: ignore
+
 
 HSIZE = 60
 
@@ -33,8 +35,7 @@ class LichessChartGenerator:
         try:
             api_token = os.environ['API_TOKEN']
         except KeyError as keyerr:
-            raise Exception(f"API_TOKEN must be passed, environment variable"
-                            f" {keyerr} does not exist") from keyerr
+            raise Exception(f"API_TOKEN must be passed, environment variable" f" {keyerr} does not exist") from keyerr
 
         # put try catch in case of invalid token
         session = berserk.TokenSession(api_token)
@@ -63,9 +64,9 @@ class LichessChartGenerator:
         puzzle_type = self.rating_type
         puzzle_types = [d['name'] for d in rating_history if 'name' in d]
         if puzzle_type not in puzzle_types:
-            raise Exception(f"Puzzle type is not valid,"
-                            f"you chose {puzzle_type}. "
-                            f"Please use one of these: {puzzle_types}")
+            raise Exception(
+                f"Puzzle type is not valid, you chose {puzzle_type}. " f"Please use one of these: {puzzle_types}"
+            )
 
         prp = [d['points'] for d in rating_history if d['name'] == puzzle_type]
         puzzle_rating_points = prp[0]
@@ -76,8 +77,8 @@ class LichessChartGenerator:
 
         # reduce list len to fit screen
         if len(ratings) >= HSIZE:
-            step = int(len(ratings)/HSIZE)
-            ratings = ratings[0:len(ratings):step]
+            step = int(len(ratings) / HSIZE)
+            ratings = ratings[0 : len(ratings) : step]
 
         return (user_id, ratings)
 
@@ -103,21 +104,22 @@ class LichessChartGenerator:
         :type text: str
         """
 
-        print(r"""
+        print(
+            r"""
           _      _      _
          | |    (_)    | |
          | |     _  ___| |__   ___  ___ ___
          | |    | |/ __| '_ \ / _ \/ __/ __|
          | |____| | (__| | | |  __/\__ \__ \
          |______|_|\___|_| |_|\___||___/___/
-        """)
+        """
+        )
         print(rating)
         print("")
         # dd/mm/YY H:M:S
         now = datetime.now()
         dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
-        print(f"User: {user_name}, "
-              f"Rating type: {self.rating_type} on lichess.org")
+        print(f"User: {user_name}, " f"Rating type: {self.rating_type} on lichess.org")
         print(f"Last update: {dt_string}")
 
 
@@ -128,7 +130,7 @@ def main(argv):
     rating_type = None
 
     try:
-        opts, _ = getopt.getopt(argv, "hr:", ["rfile="])
+        opts, _ = getopt.getopt(argv, "hi:", ["ifile="])
     except getopt.GetoptError:
         print('test.py -r <rating_type>')
         sys.exit(2)

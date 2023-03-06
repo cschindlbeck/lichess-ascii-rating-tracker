@@ -18,6 +18,21 @@ import asciichartpy  # type: ignore
 HSIZE = 60
 
 
+def _result_from_ascii(ratings: list) -> str:
+    """
+    Returns string of ASCII given a list of ratings using asciichartpy
+
+    :param ratings: List of ratings to be printed
+    :type ratings: list
+    :return: String of asciichart plot from ratings
+    :rtype: str
+    """
+    config = {'height': 9, 'format': '{:8.0f}'}
+    result = asciichartpy.plot(ratings, config)
+
+    return result
+
+
 class LichessChartGenerator:
     """
     Class to generate ascii chart of lichess ratings
@@ -46,7 +61,7 @@ class LichessChartGenerator:
         Main function to generate ascii chart
         """
         user_id, list_of_ratings = self.get_ratings_from_lichess()
-        result = self.result_from_ascii(list_of_ratings)
+        result = _result_from_ascii(list_of_ratings)
         self.print_to_markdown(user_id, result)
 
     def get_ratings_from_lichess(self) -> tuple:
@@ -81,18 +96,6 @@ class LichessChartGenerator:
             ratings = ratings[0 : len(ratings) : step]
 
         return (user_id, ratings)
-
-    def result_from_ascii(self, ratings: list) -> str:
-        """
-        Prints ASCII tracker given a list of ratings using asciichartpy
-
-        :param ratings: List of ratings to be printed
-        :type ratings: list
-        """
-        config = {'height': 9, 'format': '{:8.0f}'}
-        result = asciichartpy.plot(ratings, config)
-
-        return result
 
     def print_to_markdown(self, user_name: str, rating: str) -> None:
         """

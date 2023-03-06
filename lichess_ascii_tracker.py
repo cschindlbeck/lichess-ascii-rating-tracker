@@ -126,6 +126,13 @@ class LichessChartGenerator:
         print(f"Last update: {dt_string}")
 
 
+def usage() -> None:
+    """
+    Print usage of lichess_ascii_generator
+    """
+    print('Usage: lichess_ascii_generator.py -r <rating_type>')
+
+
 def main(argv):
     """
     Main function
@@ -133,17 +140,20 @@ def main(argv):
     rating_type = None
 
     try:
-        opts, _ = getopt.getopt(argv, "hi:", ["ifile="])
-    except getopt.GetoptError:
-        print('test.py -r <rating_type>')
+        opts, _ = getopt.getopt(argv, "hr:", ["rating_type="])
+    except getopt.GetoptError as err:
+        print(err)
+        usage()
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-h':
-            print('test.py -r <rating_type>')
+            usage()
             sys.exit()
-        elif opt in ("-r", "--rfile"):
+        elif opt in ("-r", "--rating_type"):
             rating_type = arg
+        else:
+            sys.exit()
 
     lichess_chart_generator = LichessChartGenerator(rating_type)
     lichess_chart_generator.run()

@@ -50,7 +50,7 @@ class LichessChartGenerator:
         try:
             api_token = os.environ['API_TOKEN']
         except KeyError as keyerr:
-            raise Exception(f"API_TOKEN must be passed, environment variable" f" {keyerr} does not exist") from keyerr
+            raise KeyError(f"API_TOKEN must be passed, environment variable" f" {keyerr} does not exist") from keyerr
 
         # put try catch in case of invalid token
         session = berserk.TokenSession(api_token)
@@ -79,8 +79,8 @@ class LichessChartGenerator:
         puzzle_type = self.rating_type
         puzzle_types = [d['name'] for d in rating_history if 'name' in d]
         if puzzle_type not in puzzle_types:
-            raise Exception(
-                f"Puzzle type is not valid, you chose {puzzle_type}. " f"Please use one of these: {puzzle_types}"
+            raise IndexError(
+                f"Puzzle type is not valid, you chose {puzzle_type}. Please use one of these: {puzzle_types}"
             )
 
         prp = [d['points'] for d in rating_history if d['name'] == puzzle_type]
@@ -88,7 +88,7 @@ class LichessChartGenerator:
         ratings = [row[3] for row in puzzle_rating_points]
 
         if len(ratings) == 0:
-            raise Exception("Puzzle type never played")
+            raise ValueError("Puzzle type never played")
 
         # reduce list len to fit screen
         if len(ratings) >= HSIZE:

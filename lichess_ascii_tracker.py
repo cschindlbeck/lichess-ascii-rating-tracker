@@ -18,6 +18,21 @@ import asciichartpy  # type: ignore
 HSIZE = 60
 
 
+def _result_from_ascii(ratings: list) -> str:
+    """
+    Returns string of ASCII given a list of ratings using asciichartpy
+
+    :param ratings: List of ratings to be printed
+    :type ratings: list
+    :return: String of asciichart plot from ratings
+    :rtype: str
+    """
+    config = {'height': 9, 'format': '{:8.0f}'}
+    result = asciichartpy.plot(ratings, config)
+
+    return result
+
+
 class LichessChartGenerator:
     """
     Class to generate ascii chart of lichess ratings
@@ -35,7 +50,7 @@ class LichessChartGenerator:
         try:
             api_token = os.environ['API_TOKEN']
         except KeyError as keyerr:
-            raise Exception(f"API_TOKEN must be passed, environment variable" f" {keyerr} does not exist") from keyerr
+            raise KeyError(f"API_TOKEN must be passed, environment variable" f" {keyerr} does not exist") from keyerr
 
         # put try catch in case of invalid token
         session = berserk.TokenSession(api_token)
@@ -46,7 +61,7 @@ class LichessChartGenerator:
         Main function to generate ascii chart
         """
         user_id, list_of_ratings = self.get_ratings_from_lichess()
-        result = self.result_from_ascii(list_of_ratings)
+        result = _result_from_ascii(list_of_ratings)
         self.print_to_markdown(user_id, result)
 
     def get_ratings_from_lichess(self) -> tuple:
@@ -64,8 +79,8 @@ class LichessChartGenerator:
         puzzle_type = self.rating_type
         puzzle_types = [d['name'] for d in rating_history if 'name' in d]
         if puzzle_type not in puzzle_types:
-            raise Exception(
-                f"Puzzle type is not valid, you chose {puzzle_type}. " f"Please use one of these: {puzzle_types}"
+            raise IndexError(
+                f"Puzzle type is not valid, you chose {puzzle_type}. Please use one of these: {puzzle_types}"
             )
 
         prp = [d['points'] for d in rating_history if d['name'] == puzzle_type]
@@ -73,7 +88,7 @@ class LichessChartGenerator:
         ratings = [row[3] for row in puzzle_rating_points]
 
         if len(ratings) == 0:
-            raise Exception("Puzzle type never played")
+            raise ValueError("Puzzle type never played")
 
         # reduce list len to fit screen
         if len(ratings) >= HSIZE:
@@ -81,18 +96,6 @@ class LichessChartGenerator:
             ratings = ratings[0 : len(ratings) : step]
 
         return (user_id, ratings)
-
-    def result_from_ascii(self, ratings: list) -> str:
-        """
-        Prints ASCII tracker given a list of ratings using asciichartpy
-
-        :param ratings: List of ratings to be printed
-        :type ratings: list
-        """
-        config = {'height': 9, 'format': '{:8.0f}'}
-        result = asciichartpy.plot(ratings, config)
-
-        return result
 
     def print_to_markdown(self, user_name: str, rating: str) -> None:
         """
@@ -119,8 +122,15 @@ class LichessChartGenerator:
         # dd/mm/YY H:M:S
         now = datetime.now()
         dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
-        print(f"User: {user_name}, " f"Rating type: {self.rating_type} on lichess.org")
+        print(f"User: {user_name}, Rating type: {self.rating_type} on lichess.org")
         print(f"Last update: {dt_string}")
+
+
+def usage() -> None:
+    """
+    Print usage of lichess_ascii_generator
+    """
+    print('Usage: lichess_ascii_generator.py -r <rating_type>')
 
 
 def main(argv):
@@ -130,17 +140,20 @@ def main(argv):
     rating_type = None
 
     try:
-        opts, _ = getopt.getopt(argv, "hi:", ["ifile="])
-    except getopt.GetoptError:
-        print('test.py -r <rating_type>')
+        opts, _ = getopt.getopt(argv, "hr:", ["rating_type="])
+    except getopt.GetoptError as err:
+        print(err)
+        usage()
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-h':
-            print('test.py -r <rating_type>')
+            usage()
             sys.exit()
-        elif opt in ("-r", "--rfile"):
+        elif opt in ("-r", "--rating_type"):
             rating_type = arg
+        else:
+            sys.exit()
 
     lichess_chart_generator = LichessChartGenerator(rating_type)
     lichess_chart_generator.run()

@@ -33,7 +33,7 @@ Example:
     1250 ┤ ╰╯
 
 User: christopsy666, Rating type: Bullet on lichess.org
-Last update: 01.01.2023 13:54:26
+Last update: 06.04.2023 20:28:37
 </code>
 </pre>
 
@@ -93,4 +93,3 @@ and then run it via
 ```bash
 docker run -it -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -r Bullet
 ```
-

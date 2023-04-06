@@ -1,13 +1,12 @@
 name: Build README
 
-on: [push]
-  #on:
-  #push:
-  #branches: [ "master" ]
-  #pull_request:
-  #branches: [ "master" ]
-  # schedule:
-  #  - cron: "*/10 * * * *"
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: "0 0 1 * *"
 
 env:
   API_TOKEN: ${{ secrets.API_TOKEN }}
@@ -18,7 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
     - name: Build README
       run: |
         sudo rm -rf /usr/lib/python3/dist-packages/simplejson

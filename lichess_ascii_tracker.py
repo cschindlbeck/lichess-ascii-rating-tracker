@@ -48,7 +48,7 @@ class LichessChartGenerator:
         try:
             api_token = os.environ["API_TOKEN"]
         except KeyError as keyerr:
-            raise KeyError(f"API_TOKEN must be passed, environment variable" f" {keyerr} does not exist") from keyerr
+            raise KeyError(f"API_TOKEN must be passed, environment variable {keyerr} does not exist") from keyerr
 
         # put try catch in case of invalid token
         session = berserk.TokenSession(api_token)

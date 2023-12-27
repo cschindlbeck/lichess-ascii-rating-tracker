@@ -36,7 +36,7 @@ repos:
     rev: v2.2.2
     hooks:
       - id: codespell
-        args: ['--write-changes']
+        args: ["--write-changes"]
         exclude: CHANGELOG\.rst|\.(svg|pyc|drawio|dcf|eds)$
 
   - repo: local

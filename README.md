@@ -33,7 +33,7 @@ Example:
     1250 ┤
 
 User: christopsy666, Rating type: Bullet on lichess.org
-Last update: 01.07.2024 01:13:32
+Last update: 01.08.2024 01:14:11
 </code>
 </pre>
 

@@ -123,27 +123,11 @@ class LichessChartGenerator:
         print(f"Last update: {dt_string}")
 
 
-def usage():
-    """
-    Prints CLI args explanation
-    """
-    print(
-        """
-    Usage:
-        script.py -r <rating_type>
-        
-    Options:
-        -h, --help            Show this help message and exit
-        -r, --rating_type     Specify the rating type (e.g., Blitz, Bullet, etc.)
-    """
-    )
-
-
 def main():
     """
     Main function
     """
-    parser = argparse.ArgumentParser(description="Generate Lichess charts based on rating type.", usage=usage())
+    parser = argparse.ArgumentParser(description="Generate Lichess charts based on rating type.")
     parser.add_argument(
         "-r", "--rating_type", type=str, required=True, help="Specify the rating type (e.g., Blitz, Bullet, etc.)"
     )

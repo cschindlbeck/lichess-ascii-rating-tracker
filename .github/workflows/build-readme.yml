@@ -9,7 +9,6 @@ on:
 
 env:
   API_TOKEN: ${{ secrets.API_TOKEN }}
-  RATING_TYPE: ${{ secrets.RATING_TYPE }}
 
 jobs:
   build:

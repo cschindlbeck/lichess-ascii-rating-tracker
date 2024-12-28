@@ -14,14 +14,6 @@ Example:
 <pre>
 <code>
 
-    Usage:
-        script.py -r <rating_type>
-        
-    Options:
-        -h, --help            Show this help message and exit
-        -r, --rating_type     Specify the rating type (e.g., Blitz, Bullet, etc.)
-    
-
           _      _      _
          | |    (_)    | |
          | |     _  ___| |__   ___  ___ ___
@@ -42,7 +34,7 @@ Example:
     1250 ┤
 
 User: christopsy666, Rating type: Bullet on lichess.org
-Last update: 28.12.2024 11:55:59
+Last update: 28.12.2024 12:02:24
 </code>
 </pre>
 

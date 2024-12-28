@@ -1,4 +1,5 @@
 <!-- [![Coverage Status](https://coveralls.io/repos/github/kroitor/asciichart/badge.svg?branch=master)](https://coveralls.io/github/kroitor/asciichart?branch=master) -->
+
 [![license](https://img.shields.io/github/license/kroitor/asciichart.svg)](https://github.com/kroitor/asciichart/blob/master/LICENSE.txt)
 ![pylint workflow](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/pylint.yml/badge.svg)
 ![docker workflow](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/docker-image.yml/badge.svg)
@@ -19,7 +20,7 @@ Example:
          | |    | |/ __| '_ \ / _ \/ __/ __|
          | |____| | (__| | | |  __/\__ \__ \
          |______|_|\___|_| |_|\___||___/___/
-        
+
     2130 ┤                                                              ╭
     2042 ┤                                                              │
     1954 ┤                                              ╭╮  ╭╮          │
@@ -33,7 +34,7 @@ Example:
     1250 ┤
 
 User: christopsy666, Rating type: Bullet on lichess.org
-Last update: 01.12.2024 01:42:57
+Last update: 28.12.2024 11:36:59
 </code>
 </pre>
 

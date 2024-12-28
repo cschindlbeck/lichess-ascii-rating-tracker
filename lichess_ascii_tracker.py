@@ -7,13 +7,13 @@ License: MIT
 """
 
 
+import getopt
 import os
 import sys
-import getopt
 from datetime import datetime
-import berserk  # type: ignore
-import asciichartpy  # type: ignore
 
+import asciichartpy  # type: ignore
+import berserk  # type: ignore
 
 HSIZE = 60
 
@@ -27,7 +27,7 @@ def _result_from_ascii(ratings: list) -> str:
     :return: String of asciichart plot from ratings
     :rtype: str
     """
-    config = {'height': 9, 'format': '{:8.0f}'}
+    config = {"height": 9, "format": "{:8.0f}"}
     result = asciichartpy.plot(ratings, config)
 
     return result
@@ -36,11 +36,9 @@ def _result_from_ascii(ratings: list) -> str:
 class LichessChartGenerator:
     """
     Class to generate ascii chart of lichess ratings
-
     """
 
     def __init__(self, rating_type=None):
-
         if rating_type is None:
             raise TypeError("rating_type must be set")
 
@@ -48,9 +46,9 @@ class LichessChartGenerator:
         self.rating_type = rating_type
 
         try:
-            api_token = os.environ['API_TOKEN']
+            api_token = os.environ["API_TOKEN"]
         except KeyError as keyerr:
-            raise KeyError(f"API_TOKEN must be passed, environment variable" f" {keyerr} does not exist") from keyerr
+            raise KeyError(f"API_TOKEN must be passed, environment variable {keyerr} does not exist") from keyerr
 
         # put try catch in case of invalid token
         session = berserk.TokenSession(api_token)
@@ -72,18 +70,18 @@ class LichessChartGenerator:
         :rtype: tuple
         """
 
-        user_id = self.client.account.get()['id']
+        user_id = self.client.account.get()["id"]
         rating_history = self.client.users.get_rating_history(user_id)
 
         # Get puzzle type and check for availability
         puzzle_type = self.rating_type
-        puzzle_types = [d['name'] for d in rating_history if 'name' in d]
+        puzzle_types = [d["name"] for d in rating_history if "name" in d]
         if puzzle_type not in puzzle_types:
             raise IndexError(
                 f"Puzzle type is not valid, you chose {puzzle_type}. Please use one of these: {puzzle_types}"
             )
 
-        prp = [d['points'] for d in rating_history if d['name'] == puzzle_type]
+        prp = [d["points"] for d in rating_history if d["name"] == puzzle_type]
         puzzle_rating_points = prp[0]
         ratings = [row[3] for row in puzzle_rating_points]
 
@@ -114,9 +112,9 @@ class LichessChartGenerator:
          | |     _  ___| |__   ___  ___ ___
          | |    | |/ __| '_ \ / _ \/ __/ __|
          | |____| | (__| | | |  __/\__ \__ \
-         |______|_|\___|_| |_|\___||___/___/
-        """
+         |______|_|\___|_| |_|\___||___/___/"""
         )
+        print("")
         print(rating)
         print("")
         # dd/mm/YY H:M:S
@@ -130,7 +128,7 @@ def usage() -> None:
     """
     Print usage of lichess_ascii_generator
     """
-    print('Usage: lichess_ascii_generator.py -r <rating_type>')
+    print("Usage: lichess_ascii_generator.py -r <rating_type>")
 
 
 def main(argv):
@@ -147,7 +145,7 @@ def main(argv):
         sys.exit(2)
 
     for opt, arg in opts:
-        if opt == '-h':
+        if opt == "-h":
             usage()
             sys.exit()
         elif opt in ("-r", "--rating_type"):

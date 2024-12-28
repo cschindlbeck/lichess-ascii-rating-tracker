@@ -48,7 +48,7 @@ Install the python dependencies via requirements.txt via
 pip install -r requirements.txt
 ```
 
-and export your lichess API token as environment variables via
+and export your lichess API token (go to [lichess](https://lichess.org/) ) as environment variables via
 
 ```bash
 export API_TOKEN=your_lichess_api_token

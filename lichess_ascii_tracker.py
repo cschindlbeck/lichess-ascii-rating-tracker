@@ -124,6 +124,9 @@ class LichessChartGenerator:
 
 
 def usage():
+    """
+    Prints CLI args explanation
+    """
     print(
         """
     Usage:

@@ -7,9 +7,8 @@ License: MIT
 """
 
 
-import getopt
+import argparse
 import os
-import sys
 from datetime import datetime
 
 import asciichartpy  # type: ignore
@@ -124,38 +123,37 @@ class LichessChartGenerator:
         print(f"Last update: {dt_string}")
 
 
-def usage() -> None:
+def usage():
     """
-    Print usage of lichess_ascii_generator
+    Prints CLI args explanation
     """
-    print("Usage: lichess_ascii_generator.py -r <rating_type>")
+    print(
+        """
+    Usage:
+        script.py -r <rating_type>
+        
+    Options:
+        -h, --help            Show this help message and exit
+        -r, --rating_type     Specify the rating type (e.g., Blitz, Bullet, etc.)
+    """
+    )
 
 
-def main(argv):
+def main():
     """
     Main function
     """
-    rating_type = None
+    parser = argparse.ArgumentParser(description="Generate Lichess charts based on rating type.", usage=usage())
+    parser.add_argument(
+        "-r", "--rating_type", type=str, required=True, help="Specify the rating type (e.g., Blitz, Bullet, etc.)"
+    )
 
-    try:
-        opts, _ = getopt.getopt(argv, "hr:", ["rating_type="])
-    except getopt.GetoptError as err:
-        print(err)
-        usage()
-        sys.exit(2)
+    args = parser.parse_args()
 
-    for opt, arg in opts:
-        if opt == "-h":
-            usage()
-            sys.exit()
-        elif opt in ("-r", "--rating_type"):
-            rating_type = arg
-        else:
-            sys.exit()
-
+    rating_type = args.rating_type
     lichess_chart_generator = LichessChartGenerator(rating_type)
     lichess_chart_generator.run()
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main()

@@ -16,8 +16,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Build the Docker image
-        # run: docker build . --file .docker/Dockerfile --tag my-image-name:$(date +%s)
-        run: |
-          docker build . --file .docker/Dockerfile --tag lichess-docker:v0.1.0
-          docker run -it -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -r Bullet
+        run: docker build . --file .docker/Dockerfile --tag lichess-docker:v0.1.0
+
+      - name: Run the Docker container
+        run: docker run -e API_TOKEN=$API_TOKEN lichess-docker:v0.1.0 -r Bullet

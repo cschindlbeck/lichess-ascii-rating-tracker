@@ -14,6 +14,14 @@ Example:
 <pre>
 <code>
 
+    Usage:
+        script.py -r <rating_type>
+        
+    Options:
+        -h, --help            Show this help message and exit
+        -r, --rating_type     Specify the rating type (e.g., Blitz, Bullet, etc.)
+    
+
           _      _      _
          | |    (_)    | |
          | |     _  ___| |__   ___  ___ ___
@@ -34,7 +42,7 @@ Example:
     1250 ┤
 
 User: christopsy666, Rating type: Bullet on lichess.org
-Last update: 28.12.2024 11:38:33
+Last update: 28.12.2024 11:54:12
 </code>
 </pre>
 
@@ -48,7 +56,7 @@ Install the python dependencies via requirements.txt via
 pip install -r requirements.txt
 ```
 
-and export your lichess API token (go to [lichess](https://lichess.org/) ) as environment variables via
+and export your lichess API token as environment variables via
 
 ```bash
 export API_TOKEN=your_lichess_api_token

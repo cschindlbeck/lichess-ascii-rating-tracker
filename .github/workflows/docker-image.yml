@@ -8,7 +8,7 @@ on:
     - cron: "0 0 1 * *"
 
 jobs:
-  build:
+  docker_run_test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

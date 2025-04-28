@@ -29,16 +29,6 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
       - id: fix-byte-order-marker
-  # - repo: https://github.com/psf/black
-  #   rev: stable
-  #   hooks:
-  #     - id: black
-  #       language_version: python3.6
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 7.2.0
-    hooks:
-      - id: flake8
-
 
   # Spellcheck in comments and docs
   # skipping of *.svg files is not working...
@@ -49,12 +39,17 @@ repos:
         args: ["--write-changes"]
         exclude: CHANGELOG\.rst|\.(svg|pyc|drawio|dcf|eds)$
 
-  - repo: local
+  - repo: https://github.com/psf/black
+    rev: 25.1.0
     hooks:
-      - id: pylint
-        name: pylint
-        entry: pylint
-        language: system
-        types: [python]
-        args: ["-rn", "-sn", "--rcfile=pylintrc", "--fail-on=I"]
-        exclude: tests(/\w*)*/functional/|tests/input|tests(/\w*)*data/|doc/
+    - id: black
+
+  - repo: https://github.com/pycqa/isort
+    rev: 6.0.1
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.2.0
+    hooks:
+      - id: flake8

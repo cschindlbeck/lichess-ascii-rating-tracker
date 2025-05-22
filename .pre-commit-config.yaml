@@ -30,8 +30,6 @@ repos:
       - id: trailing-whitespace
       - id: fix-byte-order-marker
 
-  # Spellcheck in comments and docs
-  # skipping of *.svg files is not working...
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
     hooks:
@@ -39,12 +37,24 @@ repos:
         args: ["--write-changes"]
         exclude: CHANGELOG\.rst|\.(svg|pyc|drawio|dcf|eds)$
 
-  - repo: local
+  # - repo: https://github.com/psf/black
+  #   rev: 25.1.0
+  #   hooks:
+  #   - id: black
+  #
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 6.0.1
+  #   hooks:
+  #     - id: isort
+  #
+  # - repo: https://github.com/pycqa/flake8
+  #   rev: 7.2.0
+  #   hooks:
+  #     - id: flake8
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.10
     hooks:
-      - id: pylint
-        name: pylint
-        entry: pylint
-        language: system
-        types: [python]
-        args: ["-rn", "-sn", "--rcfile=pylintrc", "--fail-on=I"]
-        exclude: tests(/\w*)*/functional/|tests/input|tests(/\w*)*data/|doc/
+      - id: ruff-check
+        args: [ --fix ]
+      - id: ruff-format

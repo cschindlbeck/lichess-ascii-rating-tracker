@@ -6,7 +6,6 @@ Author: Chris Schindlbeck
 License: MIT
 """
 
-
 import argparse
 import os
 from datetime import datetime
@@ -129,7 +128,11 @@ def main():
     """
     parser = argparse.ArgumentParser(description="Generate Lichess charts based on rating type.")
     parser.add_argument(
-        "-r", "--rating_type", type=str, required=True, help="Specify the rating type (e.g., Blitz, Bullet, etc.)"
+        "-r",
+        "--rating_type",
+        type=str,
+        required=True,
+        help="Specify the rating type (e.g., Blitz, Bullet, etc.)",
     )
 
     args = parser.parse_args()

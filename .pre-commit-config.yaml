@@ -39,17 +39,27 @@ repos:
         args: ["--write-changes"]
         exclude: CHANGELOG\.rst|\.(svg|pyc|drawio|dcf|eds)$
 
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
-    hooks:
-    - id: black
+  # - repo: https://github.com/psf/black
+  #   rev: 25.1.0
+  #   hooks:
+  #   - id: black
+  #
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 6.0.1
+  #   hooks:
+  #     - id: isort
+  #
+  # - repo: https://github.com/pycqa/flake8
+  #   rev: 7.2.0
+  #   hooks:
+  #     - id: flake8
 
-  - repo: https://github.com/pycqa/isort
-    rev: 6.0.1
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.11.10
     hooks:
-      - id: isort
-
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.2.0
-    hooks:
-      - id: flake8
+      # Run the linter.
+      - id: ruff-check
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format

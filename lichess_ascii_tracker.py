@@ -75,9 +75,7 @@ class LichessChartGenerator:
         puzzle_type = self.rating_type
         puzzle_types = [d["name"] for d in rating_history if "name" in d]
         if puzzle_type not in puzzle_types:
-            raise IndexError(
-                f"Puzzle type is not valid, you chose {puzzle_type}. Please use one of these: {puzzle_types}"
-            )
+            raise IndexError(f"Puzzle type is not valid, you chose {puzzle_type}. Please use one of these: {puzzle_types}")
 
         prp = [d["points"] for d in rating_history if d["name"] == puzzle_type]
         puzzle_rating_points = prp[0]

@@ -30,8 +30,6 @@ repos:
       - id: trailing-whitespace
       - id: fix-byte-order-marker
 
-  # Spellcheck in comments and docs
-  # skipping of *.svg files is not working...
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
     hooks:
@@ -55,11 +53,8 @@ repos:
   #     - id: flake8
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Ruff version.
     rev: v0.11.10
     hooks:
-      # Run the linter.
       - id: ruff-check
         args: [ --fix ]
-      # Run the formatter.
       - id: ruff-format

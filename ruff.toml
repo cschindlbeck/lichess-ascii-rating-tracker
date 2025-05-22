@@ -1,6 +1,6 @@
+lint.select = ["E", "F", "I"]  # 'I' enables isort rules
+lint.fixable = ["I"]           # allow Ruff to automatically fix import sorting
 line-length = 140
 
 [format]
-quote-style = "single"
-indent-style = "tab"
 docstring-code-format = true

@@ -14,18 +14,20 @@ jobs:
   build_readme:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: "Checkout code"
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-      - name: Build README
+
+      - name: "Build README"
         run: |
           sudo rm -rf /usr/lib/python3/dist-packages/simplejson
           pip install -r requirements.txt
           cat doc/README_prelude.md > README.md
           python3 lichess_ascii_tracker.py -r Bullet >> README.md
           cat doc/README_epilogue.md >> README.md
-      - name: Push code
+
+      - name: "Push code"
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"

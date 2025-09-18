@@ -1,4 +1,4 @@
-name: 'Dependency review'
+name: "Dependency review"
 
 on:
   pull_request:
@@ -12,10 +12,10 @@ jobs:
   dependency-review:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout repository'
+      - name: "Checkout repository"
         uses: actions/checkout@v6
 
-      - name: 'Dependency Review'
+      - name: "Dependency Review"
         uses: actions/dependency-review-action@v4
         with:
           comment-summary-in-pr: always

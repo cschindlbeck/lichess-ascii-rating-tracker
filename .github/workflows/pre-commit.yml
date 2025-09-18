@@ -1,5 +1,5 @@
 ---
-name: pre-commit
+name: "pre-commit"
 
 on:
   pull_request:
@@ -13,19 +13,20 @@ jobs:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
-      - name: Checkout
+      - name: "Checkout code"
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'push' && 'main' || github.event.pull_request.head.ref }}
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: "Set up Python ${{ matrix.python-version }}"
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
+      - name: "Install dependencies"
         run: |
           python -m pip install --upgrade pip
           pip install pylint asciichartpy berserk
 
-      - uses: pre-commit/action@v3.0.1
+      - name: "Run pre-commit"
+        uses: pre-commit/action@v3.0.1

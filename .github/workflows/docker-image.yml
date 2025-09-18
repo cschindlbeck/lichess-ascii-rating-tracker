@@ -11,11 +11,11 @@ jobs:
   docker_run_test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: "Checkout code"
         uses: actions/checkout@v5
 
-      - name: Build the Docker image
+      - name: "Build the Docker image"
         run: docker build . --file .docker/Dockerfile --tag lichess-docker:v0.1.0
 
-      - name: Run the Docker container
+      - name: "Run the Docker container"
         run: docker run -e API_TOKEN=${{ secrets.API_TOKEN }} lichess-docker:v0.1.0 -r Bullet

@@ -93,6 +93,25 @@ class TestLichessChartGenerator(unittest.TestCase):
         with self.assertRaises(IndexError):
             generator.get_ratings_from_lichess()
 
+    @patch("berserk.Client")
+    def test_empty_ratings(self, mock_client):
+        """
+        Test the case when the user has no ratings.
+        """
+        mock_client.return_value.account.get.return_value = {"id": "test_user"}
+        mock_client.return_value.users.get_rating_history.return_value = [
+            {
+                "name": "Bullet",
+                "points": [],
+            }
+        ]
+
+        generator = LichessChartGenerator("Bullet")
+        generator.client = mock_client.return_value
+
+        with self.assertRaises(ValueError):
+            generator.get_ratings_from_lichess()
+
 
 if __name__ == "__main__":
     unittest.main()

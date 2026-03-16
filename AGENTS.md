@@ -21,10 +21,37 @@ Lint / Formatting / Pre-commit
 - Codespell (spelling): `codespell` (configured via `.pre-commit-config.yaml` hook).
 
 Tests
-- Run all tests (unittest discovery): `python -m unittest discover -v`.
-- Run a single test (unittest):
-  - Module + TestCase + method: `python -m unittest test.test_lichess_ascii_tracker.Testing.test_usage`
-  - Or run a single file: `python -m unittest test.test_lichess_ascii_tracker -v`.
+- Recommended workflow (local machine):
+  1. Create a venv: `python3 -m venv .venv`
+  2. Activate it (POSIX/macOS/Linux): `source .venv/bin/activate` or (bash/zsh) `. .venv/bin/activate`.
+     - On Windows (PowerShell): `.\.venv\Scripts\Activate.ps1`.
+  3. Install runtime deps: `pip install -r requirements.txt`.
+
+- Running tests
+  - Run all tests (discovery): `python3 -m unittest discover -v`.
+  - Run a single test module: `python3 -m unittest test.test_lichess_ascii_tracker -v`.
+  - Run a single test method: `python3 -m unittest test.test_lichess_ascii_tracker.TestLichessChartGenerator.test_result_from_ascii`.
+  - You can prefix commands when not activating the venv:
+    - `. .venv/bin/activate && python3 -m unittest discover -v` (POSIX)
+
+- Why discovery might report "NO TESTS RAN"
+  - Unittest discovery requires the test folder to be a package or files to match patterns. Ensure:
+    1. `test/__init__.py` exists (not `__init.py__` or missing) so discovery recognizes the package.
+    2. Test files match `test_*.py` (our test is `test/test_lichess_ascii_tracker.py`).
+  - If discovery still fails, run the module directly by path as shown above.
+
+- Test design notes (useful for agents)
+  - Tests in this repo mock `berserk.Client` to avoid network calls; prefer mocking external APIs in new tests.
+  - Keep tests deterministic and fast; use small fixtures and patch `builtins.print` where tests suppress CLI output.
+
+- Troubleshooting quick commands
+  - Recreate venv and run tests: `rm -rf .venv && python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt && python3 -m unittest discover -v`.
+  - Run one test and show verbose output: `. .venv/bin/activate && python3 -m unittest -v test.test_lichess_ascii_tracker.TestLichessChartGenerator.test_run`.
+
+- Note about branches and merging tests
+  - When merging test branches, combine test cases and remove duplicates; ensure `test/__init__.py` is present so discovery works.
+  - After a merge, run `git status` and then the recommended workflow above to validate the test suite locally.
+
 - Note: this repo uses `unittest` (see `test/test_lichess_ascii_tracker.py`). There is no pytest config by default.
 
 CI / Workflows

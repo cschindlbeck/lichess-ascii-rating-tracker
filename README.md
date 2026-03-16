@@ -35,10 +35,14 @@ Example:
 
 User: christopsy666, Rating type: Bullet on lichess.org
 <<<<<<< HEAD
+<<<<<<< HEAD
 Last update: 16.03.2026 08:28:15
 =======
 Last update: 16.03.2026 08:24:36
 >>>>>>> 50e967b (Added tests and AGENTS.md (#55))
+=======
+Last update: 16.03.2026 08:25:19
+>>>>>>> d8ef330 (Updated README)
 </code>
 </pre>
 

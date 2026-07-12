@@ -4,6 +4,7 @@
 ![pylint workflow](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/pylint.yml/badge.svg)
 ![docker workflow](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/docker-image.yml/badge.svg)
 ![build readme](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/build-readme.yml/badge.svg)
+![tests](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/tests.yml/badge.svg)
 
 # &#9816; Lichess ASCII rating generator
 
@@ -21,20 +22,20 @@ Example:
          | |____| | (__| | | |  __/\__ \__ \
          |______|_|\___|_| |_|\___||___/___/
 
-    2130 ┤                                                              ╭
-    2042 ┤                                                              │
-    1954 ┤                                              ╭╮  ╭╮          │
-    1866 ┤                                         ╭╮ ╭─╯╰──╯╰──╮ ╭─────╯
-    1778 ┤                           ╭╮  ╭──╮╭──╮╭─╯╰─╯         ╰─╯
-    1690 ┤                        ╭╮╭╯╰──╯  ╰╯  ╰╯
-    1602 ┼╮                   ╭──╮│╰╯
-    1514 ┤│   ╭───╮╭─╮╭╮╭─────╯  ╰╯
-    1426 ┤╰╮ ╭╯   ╰╯ ╰╯╰╯
-    1338 ┤ ╰─╯
-    1250 ┤
+    1928 ┤
+    1860 ┤                                       ╭──╮╭╮  ╭╮╭╮╭
+    1792 ┤                             ╭╮╭╮ ╭╮╭──╯  ╰╯╰╮╭╯╰╯╰╯
+    1724 ┤                      ╭╮ ╭──╮│╰╯╰─╯╰╯        ╰╯
+    1656 ┤                    ╭╮││╭╯  ╰╯
+    1588 ┤                 ╭─╮│╰╯╰╯
+    1519 ┼╮   ╭╮  ╭╮   ╭─╮ │ ╰╯
+    1451 ┤│  ╭╯╰──╯│╭──╯ ╰─╯
+    1383 ┤│  │     ╰╯
+    1315 ┤╰╮╭╯
+    1247 ┤ ╰╯
 
 User: christopsy666, Rating type: Bullet on lichess.org
-Last update: 12.07.2026 19:32:51
+Last update: 12.07.2026 19:39:52
 </code>
 </pre>
 
@@ -59,7 +60,7 @@ For convenience, put this in you .bashrc
 ## Usage
 
 ```bash
-python3 lichess_ascii_rating_tracker.py -r puzzle_type
+python3 lichess_ascii_tracker.py -r puzzle_type
 ```
 
 where puzzle_type is one of the following:

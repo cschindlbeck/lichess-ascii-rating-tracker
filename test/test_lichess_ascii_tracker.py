@@ -81,6 +81,21 @@ class TestLichessChartGenerator(unittest.TestCase):
         self.assertEqual(ratings, [1500, 1550, 1525])
 
     @patch("berserk.Client")
+    def test_get_ratings_from_lichess_downsamples_to_hsize(self, mock_client):
+        """
+        Test that rating lists longer than HSIZE are reduced to at most HSIZE points
+        """
+        points = [[2023, 1, i, 1500 + i] for i in range(100)]
+        mock_client.return_value.account.get.return_value = {"id": "test_user"}
+        mock_client.return_value.users.get_rating_history.return_value = [{"name": "Bullet", "points": points}]
+
+        generator = LichessChartGenerator("Bullet")
+        generator.client = mock_client.return_value
+        _, ratings = generator.get_ratings_from_lichess()
+
+        self.assertLessEqual(len(ratings), 60)
+
+    @patch("berserk.Client")
     def test_invalid_rating_type(self, mock_client):
         """
         Test invalid rating type

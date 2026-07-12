@@ -22,7 +22,7 @@ For convenience, put this in you .bashrc
 ## Usage
 
 ```bash
-python3 lichess_ascii_rating_tracker.py -r puzzle_type
+python3 lichess_ascii_tracker.py -r puzzle_type
 ```
 
 where puzzle_type is one of the following:

@@ -7,7 +7,9 @@ License: MIT
 """
 
 import argparse
+import math
 import os
+import sys
 from datetime import datetime
 
 import asciichartpy  # type: ignore
@@ -15,8 +17,26 @@ import berserk  # type: ignore
 
 HSIZE = 60
 
+RATING_TYPES = [
+    "Bullet",
+    "Blitz",
+    "Rapid",
+    "Classical",
+    "Correspondence",
+    "Chess960",
+    "King of the Hill",
+    "Three-check",
+    "Antichess",
+    "Atomic",
+    "Horde",
+    "Racing Kings",
+    "Crazyhouse",
+    "Puzzles",
+    "UltraBullet",
+]
 
-def _result_from_ascii(ratings: list) -> str:
+
+def _result_from_ascii(ratings: list[int]) -> str:
     """
     Returns string of ASCII given a list of ratings using asciichartpy
 
@@ -36,7 +56,7 @@ class LichessChartGenerator:
     Class to generate ascii chart of lichess ratings
     """
 
-    def __init__(self, rating_type=None):
+    def __init__(self, rating_type: str = None):
         if rating_type is None:
             raise TypeError("rating_type must be set")
 
@@ -60,7 +80,7 @@ class LichessChartGenerator:
         result = _result_from_ascii(list_of_ratings)
         self.print_to_markdown(user_id, result)
 
-    def get_ratings_from_lichess(self) -> tuple:
+    def get_ratings_from_lichess(self) -> tuple[str, list[int]]:
         """
         Returns list of ratings from lichess using berserk
 
@@ -86,7 +106,7 @@ class LichessChartGenerator:
 
         # reduce list len to fit screen
         if len(ratings) >= HSIZE:
-            step = int(len(ratings) / HSIZE)
+            step = math.ceil(len(ratings) / HSIZE)
             ratings = ratings[0 : len(ratings) : step]
 
         return (user_id, ratings)
@@ -97,8 +117,8 @@ class LichessChartGenerator:
 
         :param user_name: String of user_name
         :type user_name: str
-        :param text: ratings
-        :type text: str
+        :param rating: ASCII chart of ratings
+        :type rating: str
         """
 
         print(
@@ -130,14 +150,20 @@ def main():
         "--rating_type",
         type=str,
         required=True,
+        choices=RATING_TYPES,
         help="Specify the rating type (e.g., Blitz, Bullet, etc.)",
     )
 
     args = parser.parse_args()
 
     rating_type = args.rating_type
-    lichess_chart_generator = LichessChartGenerator(rating_type)
-    lichess_chart_generator.run()
+
+    try:
+        lichess_chart_generator = LichessChartGenerator(rating_type)
+        lichess_chart_generator.run()
+    except (KeyError, IndexError, ValueError) as err:
+        print(f"Error: {err}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

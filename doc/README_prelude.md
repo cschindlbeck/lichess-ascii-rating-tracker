@@ -4,6 +4,7 @@
 ![pylint workflow](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/pylint.yml/badge.svg)
 ![docker workflow](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/docker-image.yml/badge.svg)
 ![build readme](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/build-readme.yml/badge.svg)
+![tests](https://github.com/cschindlbeck/lichess-ascii-rating-tracker/actions/workflows/tests.yml/badge.svg)
 
 # &#9816; Lichess ASCII rating generator
 

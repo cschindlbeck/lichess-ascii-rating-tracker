@@ -93,7 +93,7 @@ jobs:
           SELF_PATH=".github/workflows/auto-merge-precommit.yml"
 
           RUNS=$(gh api "repos/${{ github.repository }}/actions/runs?head_sha=$SHA&per_page=100" \
-            --jq "[.workflow_runs[] | select(.path != \"$SELF_PATH\")]")
+            --jq "[.workflow_runs[] | select(.path != \"$SELF_PATH\" and .event != \"dynamic\")]")
 
           INCOMPLETE=$(echo "$RUNS" | jq '[.[] | select(.status != "completed")] | length')
           FAILED=$(echo "$RUNS" | jq '[.[] | select(.conclusion != "success" and .conclusion != "skipped" and .conclusion != null)] | length')

@@ -1,6 +1,13 @@
 ---
 name: "Auto-merge pre-commit hook updates"
 
+# NOTE: Pull requests opened by pre-commit-autoupdate.yml use the default GITHUB_TOKEN,
+# which means GitHub currently withholds this repo's CI runs on that branch pending a
+# maintainer clicking "Approve and run" in the Actions tab (they conclude `action_required`,
+# never `success`, until approved). This workflow only triggers once those checks reach
+# `success` -- so for now, approve the CI run once per autoupdate PR and this workflow
+# will take it from there and merge automatically.
+
 on:
   workflow_run:
     workflows:
@@ -18,6 +25,9 @@ jobs:
     if: >
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success'
+    concurrency:
+      group: auto-merge-precommit-${{ github.event.workflow_run.head_sha }}
+      cancel-in-progress: false
     steps:
       - name: "Resolve pull request for this workflow run"
         id: pr
@@ -118,7 +128,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PR: ${{ steps.pr.outputs.number }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
           set -euo pipefail
           echo "All checks green for PR #$PR — squash-merging."
-          gh pr merge "$PR" --squash --delete-branch=false
+          gh pr merge "$PR" --squash --delete-branch=false --match-head-commit "$SHA"

@@ -6,7 +6,6 @@ Author: Chris Schindlbeck
 License: MIT
 """
 
-
 import argparse
 import os
 from datetime import datetime
@@ -76,9 +75,7 @@ class LichessChartGenerator:
         puzzle_type = self.rating_type
         puzzle_types = [d["name"] for d in rating_history if "name" in d]
         if puzzle_type not in puzzle_types:
-            raise IndexError(
-                f"Puzzle type is not valid, you chose {puzzle_type}. Please use one of these: {puzzle_types}"
-            )
+            raise IndexError(f"Puzzle type is not valid, you chose {puzzle_type}. Please use one of these: {puzzle_types}")
 
         prp = [d["points"] for d in rating_history if d["name"] == puzzle_type]
         puzzle_rating_points = prp[0]
@@ -129,7 +126,11 @@ def main():
     """
     parser = argparse.ArgumentParser(description="Generate Lichess charts based on rating type.")
     parser.add_argument(
-        "-r", "--rating_type", type=str, required=True, help="Specify the rating type (e.g., Blitz, Bullet, etc.)"
+        "-r",
+        "--rating_type",
+        type=str,
+        required=True,
+        help="Specify the rating type (e.g., Blitz, Bullet, etc.)",
     )
 
     args = parser.parse_args()
